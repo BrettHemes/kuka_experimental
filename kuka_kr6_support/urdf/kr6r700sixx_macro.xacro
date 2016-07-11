@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <property name="pi" value="3.141592654"/>
+  <!--degrees to radians-->
+  <property name="deg" value="0.017453293"/>
+
+  <!-- borrowed from ros-industrial/kuka_experimental/kuka_resources/urdf/common_colours.xacro -->
+  <material name="color_kuka_pedestal">
+    <color rgba="${129/255} ${120/255} ${ 99/255 } 1.0"/>
+  </material>
+  <material name="color_kuka_orange">
+    <color rgba="${246/255} ${120/255} ${ 40/255 } 1.0"/>
+  </material>
+  <material name="color_kuka_black">
+    <color rgba="${ 14/255 } ${ 14/255 } ${ 16/255 } 1.0"/>
+  </material>
+
+
+  <xacro:macro name="kuka_kr6r700sixx" params="prefix">
+    <!-- link list -->
+    <link name="${prefix}base" />
+    <link name="${prefix}base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/visual/base_link.stl" />
+        </geometry>
+        <material name="color_kuka_pedestal" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/collision/base_link.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}link_1">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/visual/link_1.stl" />
+        </geometry>
+        <material name="color_kuka_orange" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/collision/link_1.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}link_2">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 ${pi/2} 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/visual/link_2.stl" />
+        </geometry>
+        <material name="color_kuka_orange" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 ${pi/2} 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/collision/link_2.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}link_3">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/visual/link_3.stl" />
+        </geometry>
+        <material name="color_kuka_orange" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/collision/link_3.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}link_4">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/visual/link_4.stl" />
+        </geometry>
+        <material name="color_kuka_orange" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/collision/link_4.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}link_5">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/visual/link_5.stl" />
+        </geometry>
+        <material name="color_kuka_orange" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/collision/link_5.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}link_6">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/visual/link_6.stl" />
+        </geometry>
+        <material name="color_kuka_pedestal" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/collision/link_6.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}tool0" />
+    <!-- end of link list -->
+
+    <!-- joints -->
+    <joint name="${prefix}joint_a1" type="revolute">
+      <origin xyz="0.000 0.000 0.217" rpy="0 0 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link_1"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="${-170*deg}" upper="${170*deg}" effort="0" velocity="${360*deg}"/>
+    </joint>
+    <joint name="${prefix}joint_a2" type="revolute">
+      <origin xyz="0.025 0.000 0.183" rpy="0 0 0"/>
+      <parent link="${prefix}link_1"/>
+      <child link="${prefix}link_2"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-190*deg}" upper="${45*deg}" effort="0" velocity="${300*deg}"/>
+    </joint>
+    <joint name="${prefix}joint_a3" type="revolute">
+      <origin xyz="0.315 0.000 0.000" rpy="0 0 0"/>
+      <parent link="${prefix}link_2"/>
+      <child link="${prefix}link_3"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-120*deg}" upper="${156*deg}" effort="0" velocity="${360*deg}"/>
+    </joint>
+    <joint name="${prefix}joint_a4" type="revolute">
+      <origin xyz="0.107 0.000 0.035" rpy="0 0 0"/>
+      <parent link="${prefix}link_3"/>
+      <child link="${prefix}link_4"/>
+      <axis xyz="-1 0 0"/>
+      <limit lower="${-185*deg}" upper="${185*deg}" effort="0" velocity="${381*deg}"/>
+    </joint>
+    <joint name="${prefix}joint_a5" type="revolute">
+      <origin xyz="0.258 0.000 0.000" rpy="0 0 0"/>
+      <parent link="${prefix}link_4"/>
+      <child link="${prefix}link_5"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-120*deg}" upper="${120*deg}" effort="0" velocity="${388*deg}"/>
+    </joint>
+    <joint name="${prefix}joint_a6" type="revolute">
+      <origin xyz="0.080 0.000 0.000" rpy="0 0 0"/>
+      <parent link="${prefix}link_5"/>
+      <child link="${prefix}link_6"/>
+      <axis xyz="-1 0 0"/>
+      <limit lower="${-350*deg}" upper="${350*deg}" effort="0" velocity="${615*deg}"/>
+    </joint>
+
+    <joint name="${prefix}base_link-base" type="fixed">
+      <origin xyz="0.000 0.000 0.000" rpy="0 0 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}base"/>
+    </joint>
+    <joint name="${prefix}link_6-tool0" type="fixed">
+      <parent link="${prefix}link_6"/>
+      <child link="${prefix}tool0"/>
+      <origin xyz="0.000 0.000 0.000" rpy="0 ${90*deg} 0"/>
+    </joint>
+  </xacro:macro>
+</robot>
