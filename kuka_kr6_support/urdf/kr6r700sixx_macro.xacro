@@ -51,14 +51,14 @@
     </link>
     <link name="${prefix}link_2">
       <visual>
-        <origin xyz="0 0 0" rpy="0 ${pi/2} 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/visual/link_2.stl" />
         </geometry>
         <material name="color_kuka_orange" />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 ${pi/2} 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_kr6_support/meshes/kr6r700sixx/collision/link_2.stl" />
         </geometry>
@@ -129,42 +129,42 @@
 
     <!-- joints -->
     <joint name="${prefix}joint_a1" type="revolute">
-      <origin xyz="0.000 0.000 0.217" rpy="0 0 0"/>
+      <origin xyz="0 0 0.4" rpy="0 0 0"/>
       <parent link="${prefix}base_link"/>
       <child link="${prefix}link_1"/>
       <axis xyz="0 0 -1"/>
       <limit lower="${-170*deg}" upper="${170*deg}" effort="0" velocity="${360*deg}"/>
     </joint>
     <joint name="${prefix}joint_a2" type="revolute">
-      <origin xyz="0.025 0.000 0.183" rpy="0 0 0"/>
+      <origin xyz="0.025 0 0" rpy="0 0 0"/>
       <parent link="${prefix}link_1"/>
       <child link="${prefix}link_2"/>
       <axis xyz="0 1 0"/>
       <limit lower="${-190*deg}" upper="${45*deg}" effort="0" velocity="${300*deg}"/>
     </joint>
     <joint name="${prefix}joint_a3" type="revolute">
-      <origin xyz="0.315 0.000 0.000" rpy="0 0 0"/>
+      <origin xyz="0.315 0 0" rpy="0 0 0"/>
       <parent link="${prefix}link_2"/>
       <child link="${prefix}link_3"/>
       <axis xyz="0 1 0"/>
       <limit lower="${-120*deg}" upper="${156*deg}" effort="0" velocity="${360*deg}"/>
     </joint>
     <joint name="${prefix}joint_a4" type="revolute">
-      <origin xyz="0.107 0.000 0.035" rpy="0 0 0"/>
+      <origin xyz="0 0 0.035" rpy="0 0 0"/>
       <parent link="${prefix}link_3"/>
       <child link="${prefix}link_4"/>
       <axis xyz="-1 0 0"/>
       <limit lower="${-185*deg}" upper="${185*deg}" effort="0" velocity="${381*deg}"/>
     </joint>
     <joint name="${prefix}joint_a5" type="revolute">
-      <origin xyz="0.258 0.000 0.000" rpy="0 0 0"/>
+      <origin xyz="0.365 0 0" rpy="0 0 0"/>
       <parent link="${prefix}link_4"/>
       <child link="${prefix}link_5"/>
       <axis xyz="0 1 0"/>
       <limit lower="${-120*deg}" upper="${120*deg}" effort="0" velocity="${388*deg}"/>
     </joint>
     <joint name="${prefix}joint_a6" type="revolute">
-      <origin xyz="0.080 0.000 0.000" rpy="0 0 0"/>
+      <origin xyz="0.080 0 0" rpy="0 0 0"/>
       <parent link="${prefix}link_5"/>
       <child link="${prefix}link_6"/>
       <axis xyz="-1 0 0"/>
@@ -172,14 +172,14 @@
     </joint>
 
     <joint name="${prefix}base_link-base" type="fixed">
-      <origin xyz="0.000 0.000 0.000" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="${prefix}base_link"/>
       <child link="${prefix}base"/>
     </joint>
     <joint name="${prefix}link_6-tool0" type="fixed">
       <parent link="${prefix}link_6"/>
       <child link="${prefix}tool0"/>
-      <origin xyz="0.000 0.000 0.000" rpy="0 ${90*deg} 0"/>
+      <origin xyz="0 0 0" rpy="0 ${90*deg} 0"/>
     </joint>
   </xacro:macro>
 </robot>
